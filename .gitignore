@@ -1,0 +1,41 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Angular
+/dist/
+/*.js
+/*.js.map
+/*.css.map
+/*.d.ts
+/*.metadata.json
+/*.ngfactory.ts
+/*.ngstyle.ts
+/coverage/
+/e2e/*.js
+/e2e/*.js.map
+
+# IDE/Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Compiled output
+*.log
+*.bak
+*.tmp
+
+# Dependency directories
+/jspm_packages/
+/bower_components/
+
+# Environment variables
+.env
+.env.prod
+.env.local
+
+# Miscellaneous
+.DS_Store
+Thumbs.db

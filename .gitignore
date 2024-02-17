@@ -39,3 +39,8 @@ yarn-error.log
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+
+
+# Ignore cache created with the Angular CLI.
+.angular/

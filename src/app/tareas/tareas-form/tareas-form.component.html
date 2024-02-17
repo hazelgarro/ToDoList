@@ -1,0 +1,33 @@
+<form #form="ngForm" (submit)="agregarTarea(form)"
+[class.submitted]="service.formSubmitted" novalidate>
+    <input type="hidden" name="id" [value]="service.formData.id">
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input class="form-control form-control-lg" 
+        placeholder="Nombre de la tarea"
+        #nombre="ngModel" name="nombre"
+        [(ngModel)]="service.formData.nombre"
+        required minlength="4" maxlength="30">
+    </div>
+    <div class="mb-3">
+        <label>Descripcion</label>
+        <input class="form-control form-control-lg" 
+        placeholder="Descripcion de la tarea"
+        #descripcion="ngModel" name="descripcion"
+        [(ngModel)]="service.formData.descripcion"
+        required minlength="4" maxlength="150">
+    </div>
+    <div class="mb-3">
+        <label>Estado</label>
+        <input class="form-control form-control-lg" 
+        placeholder="Estado de la tarea"
+        #estado="ngModel" name="estado"
+        [(ngModel)]="service.formData.estado"
+        required minlength="4" maxlength="15">
+    </div>
+    <div class="d-grid">
+        <button class="btn btn lg btn-success" type="submit">
+            Agregar tarea
+        </button>
+    </div>
+</form>

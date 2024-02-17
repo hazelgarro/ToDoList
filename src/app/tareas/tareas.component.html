@@ -1,0 +1,25 @@
+<div class="bg-body-secondary text-center py-5 rounded-2 m-5">
+    <h1 class="display-6 fw-bold">To Do List</h1>
+</div>
+<div class="row mt-5">
+    <div class="col-6">
+        <app-tareas-form/>
+    </div>
+    <div class="col-6">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start mb-2 border px-4 py-3 rounded-3" 
+            *ngFor="let tarea of service.list">
+            <div class="flex-grow-1 mouse-hover"
+            (click)="populateForm(tarea)">
+                <div class="fw-bold me-2">{{ tarea.nombre}}</div>
+                <div class="">{{ tarea.descripcion}}</div>
+                <div class="fw-bold">{{ tarea.estado}}</div>
+            </div>
+            <span class="text-secondary">
+                <i class="fa-solid fa-trash mouse-hover"
+                (click)="onDelete(tarea.id)"></i>
+            </span>
+            </li>
+        </ul>
+    </div>
+</div>

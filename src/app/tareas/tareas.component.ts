@@ -55,4 +55,32 @@ export class TareasComponent implements OnInit {
   TareasListaCompleta(){
     this.estadoBusqueda = false;
   }
+
+  getBorderColor(estado: string): string {
+    console.log("Estado:", estado);
+    switch (estado) {
+        case 'Pendiente':
+            return 'red';
+        case 'En proceso':
+            return '#53d4ff';
+        case 'Terminado':
+            return 'green';
+        default:
+            return 'gray'; 
+    }
+}
+
+getColor(estado: string): string {
+  console.log("Estado:", estado);
+  switch (estado) {
+      case 'Pendiente':
+          return 'red';
+      case 'En proceso':
+          return '#53d4ff';
+      case 'Terminado':
+          return 'green';
+      default:
+          return 'gray'; 
+  }
+}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { TareaServiceService } from '../services/tarea-service.service';
+import { BuscarTareasServiceService } from '../services/buscar-tareas-service.service';
 import { TareaService } from '../services/tarea-service.model';
 import { ToastrService } from 'ngx-toastr';
 
@@ -10,13 +11,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TareasComponent implements OnInit {
 
-  constructor(public service: TareaServiceService, private toastr: ToastrService){
+  searchResults: any[] = [];
+  estadoBusqueda: boolean = false;
+
+  constructor(public service: TareaServiceService, private toastr: ToastrService,  private searchResultsService: BuscarTareasServiceService){
 
   }
 
   
   ngOnInit(): void {
     this.service.refreshList();
+
+    this.searchResultsService.searchResults$.subscribe(
+      (results: any[]) => {
+        this.searchResults = results;
+        console.log(this.searchResults);
+        if(this.searchResults.length > 0){
+          this.estadoBusqueda = true;
+        }else{
+          this.estadoBusqueda = false;
+        }
+      }
+    );
   }
 
   populateForm(selectedRecord: TareaService){
@@ -36,5 +52,7 @@ export class TareasComponent implements OnInit {
     }
   }
   
-
+  TareasListaCompleta(){
+    this.estadoBusqueda = false;
+  }
 }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { TareaServiceService } from '../../services/tarea-service.service';
+import { BuscarTareasServiceService } from '../../services/buscar-tareas-service.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AppModule } from '../../app.module';
 
 @Component({
   selector: 'app-tareas-form',
@@ -10,7 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TareasFormComponent {
 
-  constructor(public service: TareaServiceService, private toastr: ToastrService){
+  reiniciarResultados: any[] = [];
+
+  constructor(public service: TareaServiceService, private toastr: ToastrService, private servicesearch: BuscarTareasServiceService){
 
   }
 
@@ -30,6 +34,7 @@ export class TareasFormComponent {
         console.log(res);
         this.toastr.success("Se agrego la tarea con exito");
         this.service.refreshList()
+        this.servicesearch.updateSearchResults(this.reiniciarResultados);
       }, 
       error: err => {console.error(err)}
     }), this.service.refreshList();
@@ -41,6 +46,7 @@ export class TareasFormComponent {
         console.log(res);
         this.toastr.info("Se modifico la tarea con exito");
         this.service.refreshList()
+        this.servicesearch.updateSearchResults(this.reiniciarResultados);
       }, 
       error: err => {console.error(err)}
     }), this.service.refreshList();

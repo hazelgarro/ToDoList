@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { TareaService } from './tarea-service.model';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class TareaServiceService {
   urlAdd:string = environment.apiBaseUrl + 'Tareas/Agregar';
   urlEdit:string = environment.apiBaseUrl + 'Tareas/Modificar';
   urlDelete:string = environment.apiBaseUrl + 'Tareas/Eliminar?numero=';
+  urlSearch:string = environment.apiBaseUrl + 'Tareas/BuscarTarea?bNombre=';
 
   list: TareaService[]=[];
 
@@ -43,12 +45,14 @@ export class TareaServiceService {
     return this.http.delete(this.urlDelete + id, { responseType: 'text' })
   }
 
+  search(bName: string): Observable<any>{
+    return this.http.get<any>(this.urlSearch + bName)
+  }
+
   resetForm(form: NgForm) {
     form.form.reset()
     this.formData = new TareaService()
     this.formSubmitted = false
   }
-
-
 
 }
